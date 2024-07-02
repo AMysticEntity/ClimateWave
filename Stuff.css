@@ -24,15 +24,14 @@ body {
   
   table {
     font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+    width: 210%;
     text-align: center;
     border-radius: 5px;
+    border-width: 5px;
     border-color: #3E3E3E;
     align-items: center;
     display: flex;
     justify-content: center;
-    display: flex;
   }
   
     td {
