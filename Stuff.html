@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<head>
+  <link rel="stylesheet" href="Stuff.css"/>
+  <script src="API.js"></script>
+  <script src="Days.js"></script>
+  <script src="
+https://kit.fontawesome.com/454fd5f3ad.js"
+crossorigin="anonymous"></script>
+
+
+<title>The Fillers</title>
+
+
+</head>
+<body>
+
+<div class="container">
+   <img src="plym-beach-title.png" width="100%" height="100%"/>
+</div>
+
+<div class="topnav">
+    <a>Home</a>
+    <a>Local Weather</a>  
+    <a>UK Weather</a>
+</div><br>
+
+<div class="dropdown-container">
+  <div class="dropdown">
+    <button id="namechange" class="dropbtn">Plymouth</button>
+    <div class="dropdown-content">
+      <a onclick="blackresponse()">Blackpool</a>
+      <a onclick="buderesponse()">Bude</a>
+      <a onclick="plymresponse()">Plymouth</a>
+      <a onclick="STresponse()">St Ives</a>
+      <a onclick="westresponse()">Westward Ho!</a>
+      <a onclick="svalresponse()">Svalbard</a>
+    </div>
+  </div>
+</div>
+
+
+  <div style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th id="day1" style="font-size: 18px;"></th>
+        <th id="day2" style="font-size: 18px;"></th>
+        <th id="day3" style="font-size: 18px;"></th>
+        <th id="day4" style="font-size: 18px;"></th>
+        <th id="day5" style="font-size: 18px;"></th>
+        <th id="day6" style="font-size: 18px;"></th>
+        <th id="day7" style="font-size: 18px;"></th>
+      </tr>
+      <tr>
+        <td><i class="fa-solid fa-cloud" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-sun" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-sun" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-cloud" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-cloud-rain" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-cloud-showers-heavy" style="font-size: 45px;"></i></td>
+        <td><i class="fa-solid fa-sun" style="font-size: 45px;"></i></td>
+      </tr>
+      <tr>
+        <td>Temperature low-high</td>
+        <td id="tblborder"><span id="dayLowerBoundMaxTemp"></span></td>
+        <td>Temperature low-high</td>
+        <td>Temperature low-high</td>
+        <td>Temperature low-high</td>
+        <td>Temperature low-high</td>
+        <td>Temperature low-high</td>
+      </tr>
+      <tr>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+        <td>Rain prob %</td>
+      </tr>
+      <tr>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+        <td>Wind speed (knots)</td>
+      </tr>
+    </table>
+    <br><br>
+  </div>
+
+  <p><b>Wind Speed: <span id="midday10MWindSpeed"></span> Knots</b></p>
+  <p id="Splitter"><b>Chance Of Rain: <span id="dayProbabilityOfRain"></span>%</b></p>
+  <p id="Splitter"><b>Chance Of Heavy Rain: <span id="dayProbabilityOfHeavyRain"></span>%</b></p>
+  <p id="Splitter"><b>Lowest Temp: <span id="dayLowerBoundMaxTemp"></span>℃</b></p>
+  <p id="Splitter"><b>Highest Temp: <span id="dayUpperBoundMaxTemp"></span>℃</b></p>
+  <p id="Splitter"><b>Chance Of Hail: <span id="dayProbabilityOfHail"></span>%</b></p>
+  <p id="Splitter"><b>UV index: <span id="maxUvIndex"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="daySignificantWeatherCode"></span></b> ------- USE FOR IMAGES, NO NEED FOR WEIRD IF STATEMENTS AND MATH</p>
+  <p id="Splitter"><b>Chance Of Snow:<span id="dayProbabilityOfSnow"></span></b></p>
+
+</body>
+</html>
+
