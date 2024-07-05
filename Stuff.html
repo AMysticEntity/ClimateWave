@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<head>
+  <link rel="stylesheet" href="Stuff.css"/>
+  <script src="API.js"></script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
+<title>Climate Wave 🌊</title>
+
+<link rel="icon" href="logo.ico" type="image/x-icon">
+
+</head>
+<body>
+
+<div class="container">
+   <img src="plym-beach-title.png" width="100%" height="100%"/>
+</div>
+
+<div class="topnav">
+    <a>Home</a>
+    <a>Local Weather</a>  
+    <a>UK Weather</a>
+</div><br>
+
+<div class="dropdown-container">
+  <div class="dropdown">
+    <button id="namechange" class="dropbtn">Plymouth</button>
+    <div class="dropdown-content">
+      <a onclick="blackresponse()">Blackpool</a>
+      <a onclick="buderesponse()">Bude</a>
+      <a onclick="plymresponse()">Plymouth</a>
+      <a onclick="STresponse()">St Ives</a>
+      <a onclick="westresponse()">Westward Ho!</a>
+      <a onclick="svalresponse()">Svalbard</a>
+    </div>
+  </div>
+</div>
+
+
+  <div style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th style="font-size: 18px;">Yesterday (NO API DATA)</th>
+        <th style="font-size: 18px;">Today</th>
+        <th style="font-size: 18px;">Tommorrow</th>
+        <th style="font-size: 18px;">Two days</th>
+        <th style="font-size: 18px;">Three days</th>
+        <th style="font-size: 18px;">Four days</th>
+        <th style="font-size: 18px;">Five days</th>
+      </tr>
+      <tr>
+        <td><img id="yesterdayimage" src="Yesterday.png" style="width: 45px;"></img></td>
+        <td><img id="todayimage" style="width: 45px;"></img></td>
+        <td><img id="tomorrowimage" style="width: 45px;"></img></td>
+        <td><img id="twodaysimage" style="width: 45px;"></img></td>
+        <td><img id="threedaysimage" style="width: 45px;"></img></td>
+        <td><img id="fourdaysimage" style="width: 45px;"></img></td>
+        <td><img id="fivedaysimage" style="width: 45px;"></img></td>
+      </tr>
+      <tr>
+        <td><b><span id="yesterdaylowermaxtemp"></span>℃ - <span id="yesterdayhighermaxtemp"></span>℃</b></td>
+        <td><b><span id="lowermaxtemp"></span>℃ - <span id="highermaxtemp"></span>℃</b></td>
+        <td><b><span id="tomorrowlowermaxtemp"></span>℃ - <span id="tomorrowhighermaxtemp"></span>℃</b></td>
+        <td><b><span id="twodayslowermaxtemp"></span>℃ - <span id="twodayshighermaxtemp"></span>℃</b></td>
+        <td><b><span id="threedayslowermaxtemp"></span>℃ - <span id="threedayshighermaxtemp"></span>℃</b></td>
+        <td><b><span id="fourdayslowermaxtemp"></span>℃ - <span id="fourdayshighermaxtemp"></span>℃</b></td>
+        <td><b><span id="fivedayslowermaxtemp"></span>℃ - <span id="fivedayshighermaxtemp"></span>℃</b></td>
+      </tr>
+      <tr>
+        <td><b><span id="yesterdayrainprob"></span>% 💧</b></td>
+        <td><b><span id="rainprob"></span>% 💧</b></td>
+        <td><b><span id="tomorrowrainprob"></span>% 💧</b></td>
+        <td><b><span id="twodaysrainprob"></span>% 💧</b></td>
+        <td><b><span id="threedaysrainprob"></span>% 💧</b></td>
+        <td><b><span id="fourdaysrainprob"></span>% 💧</b></td>
+        <td><b><span id="fivedaysrainprob"></span>% 💧</b></td>
+      </tr>
+      <tr>
+        <td><b>Wind Speed: <span id="yesterdaywindspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="windspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="tomorrowwindspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="twodayswindspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="threedayswindspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="fourdayswindspeed"></span> Knots</b></td>
+        <td><b>Wind Speed: <span id="fivedayswindspeed"></span> Knots</b></td>
+      </tr>
+      <tr>
+        <td><b>UV Index: <span id="yesterdayUVindex"></span></b></td>
+        <td><b>UV Index: <span id="UVindex"></span></b></td>
+        <td><b>UV Index: <span id="tomorrowUVindex"></span></b></td>
+        <td><b>UV Index: <span id="twodaysUVindex"></span></b></td>
+        <td><b>UV Index: <span id="threedaysUVindex"></span></b></td>
+        <td><b>UV Index: <span id="fourdaysUVindex"></span></b></td>
+        <td><b>UV Index: <span id="fivedaysUVindex"></span></b></td>
+      </tr>
+    </table>
+    <br><br>
+  </div>
+
+  <canvas id="WaveHeight" style="width:100%;max-width:600px"></canvas>
+
+  <script>
+  const xValues = [Number(localStorage.getItem("yesterdaywaveheight")).toFixed(2), Number(localStorage.getItem("todaywaveheight")).toFixed(2), Number(localStorage.getItem("tomorrowwaveheight")).toFixed(2), Number(localStorage.getItem("twodayswaveheight")).toFixed(2), Number(localStorage.getItem("threedayswaveheight")).toFixed(2), Number(localStorage.getItem("fourdayswaveheight")).toFixed(2), Number(localStorage.getItem("fivedayswaveheight")).toFixed(2)];
+  const yValues = ["Yesterday", "Today", "Tomorrow", "2 Days time", "3 Days time", "4 Days time", "5 Days time"];
+  const barColors = ["red", "green","blue","orange","brown", "pink", "white"];
+  
+  new Chart("WaveHeight", {
+    type: "bar",
+    data: {
+      labels: yValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: xValues
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "Probable Wave height"
+      }
+    }
+  });
+  </script>  
+
+<canvas id="TempGraph" style="width:100%;max-width:600px"></canvas>
+<script>
+  const otherxValues = [50,60,70,80,90,100,110,120,130,140,150];
+  const otheryValues = [localStorage.getItem("todaywindspeedgraph"), localStorage.getItem("fivedayswindspeedgraph")];
+  
+  new Chart("TempGraph", {
+    type: "line",
+    data: {
+      labels: otherxValues,
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: otheryValues
+      }]
+    },
+    options: {
+      legend: {display: false},
+      scales: {
+        yAxes: [{ticks: {min: 6, max:16}}],
+      }
+    }
+  });
+  </script>
+  </body>
+  </html>
+  
+
+  <p id="Splitter"><b>Weather Code: <span id="weatherid"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="tomorrowweatherid"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="twodaysweatherid"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="threedaysweatherid"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="fourdaysweatherid"></span></b></p>
+  <p id="Splitter"><b>Weather Code: <span id="fivedaysweatherid"></span></b></p>
+
+
+</body>
+</html>
+

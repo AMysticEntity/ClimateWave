@@ -24,14 +24,10 @@ body {
   
   table {
     font-family: arial, sans-serif;
-    width: 210%;
+    width: 100%;
     text-align: center;
-    border-radius: 5px;
-    border-width: 5px;
-    border-color: #3E3E3E;
-    align-items: center;
-    display: flex;
     justify-content: center;
+    background-color: #31c6b7;
   }
   
     td {
@@ -122,6 +118,15 @@ body {
   width: 100%;
 }
 
+.dropdown-container2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  width: 100%;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -175,4 +180,26 @@ body {
   border-radius: 45px;
   border-width: 10px;
   border-color: black;
+}
+
+
+
+#WaveHeight
+{
+  align-items: center;
+  display: flex;
+  width: 100%;
+  margin: 0 auto; 
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+#centerer
+{
+  align-items: center;
+  display: flex;
+  width: 100%;
+  margin: 0 auto; 
+  margin-top: 50px;
+  text-align: center;
 }
